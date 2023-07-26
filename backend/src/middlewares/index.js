@@ -1,3 +1,6 @@
 module.exports = {
-    AirplaneMiddlewares: require('./airplane-middlewares')
+    
+    
+    UserMiddlewares: require('./user-middlewares')
+    
 }
