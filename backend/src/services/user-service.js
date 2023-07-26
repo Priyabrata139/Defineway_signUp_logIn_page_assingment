@@ -36,7 +36,44 @@ async function createUser(data) {
 }
 
 
+async function validateUser(data) {
+    try {
+        const user = await userRepository.findByEmail(data.email);
+        
+        if (!user) {
+            throw new AppError(['User not exsist'], StatusCodes.NOT_FOUND);
+        }
+        const plainPassword = data.password;
+       await bcrypt.compare(plainPassword, user.password).then(function(result) {
+           if (result == true) {
+            return {'success': 'Ok'};
+           }
+           else {
+            throw new AppError(['Incorrect password'], StatusCodes.BAD_REQUEST);
+           }
+        });
+        
+    } catch(error) {
+        console.log(error);
+        if(error.name == 'SequelizeValidationError' || error.name == 'SequelizeUniqueConstraintError') {
+            let explanation = [];
+            error.errors.forEach((err) => {
+                explanation.push(err.message);
+            });
+            throw new AppError(explanation, StatusCodes.BAD_REQUEST);
+        }
+        if (error instanceof AppError) {
+            throw error;
+        }
+
+        throw new AppError('Cannot validate user object', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
+
 
 module.exports = {
-    createUser
+    createUser,
+
+    validateUser
 }
