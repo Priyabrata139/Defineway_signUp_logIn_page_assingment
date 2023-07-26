@@ -1,0 +1,20 @@
+/* Inside styles.css */
+.container {
+    display: none;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+}
+
+.container input,
+.container button {
+    margin: 5px;
+    padding: 5px 10px;
+}
+
+#dashboard-container {
+    display: none;
+}
