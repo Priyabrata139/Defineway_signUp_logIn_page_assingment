@@ -12,7 +12,7 @@ router.post('/signup',
 
 router.post('/signin', 
         UserMiddlewares.validateCreateRequest,
-        UserController.signIn);      
+        UserController.signIn);
 
 
 module.exports = router;

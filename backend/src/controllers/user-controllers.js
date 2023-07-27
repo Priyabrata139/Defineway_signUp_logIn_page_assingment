@@ -28,6 +28,7 @@ async function signUp(req, res) {
 
 async function signIn(req, res) {
     try {
+        console.log('inside controller');
         const user = await UserService.validateUser({
             email: req.body.email,
             password: req.body.password
