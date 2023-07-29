@@ -7,7 +7,7 @@ function validateCreateRequest(req, res, next) {
     
 
     if(!req.body.email) {
-        ErrorResponse.message = 'Something went wrong while creating airplane';
+        ErrorResponse.message = 'Something went wrong while creating user';
         ErrorResponse.error = new AppError(['email not found in the oncoming request in the correct form'], StatusCodes.BAD_REQUEST);
         return res
                 .status(StatusCodes.BAD_REQUEST)
@@ -15,7 +15,7 @@ function validateCreateRequest(req, res, next) {
     }
 
     if(!req.body.password) {
-        ErrorResponse.message = 'Something went wrong while creating airplane';
+        ErrorResponse.message = 'Something went wrong while creating user';
         ErrorResponse.error = new AppError(['password not found in the oncoming request in the correct form'], StatusCodes.BAD_REQUEST);
         return res
                 .status(StatusCodes.BAD_REQUEST)
